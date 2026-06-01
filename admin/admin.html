@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizQuest Admin Panel</title>
+    <link rel="stylesheet" href="../css/admin-style.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <div class="mobile-header">
+        <button id="menuToggle">☰</button>
+        <div class="mobile-brand">
+          <img src="../assets/images/bi-logo.png" alt="" />
+          <span>QuizQuest Admin</span>
+        </div>
+      </div>
+
+      <div class="sidebar-overlay"></div>
+
+      <aside class="admin-sidebar">
+        <div class="admin-brand">
+          <img src="../assets/images/bi-logo.png" alt="BI Logo" />
+
+          <h3>QuizQuest</h3>
+
+          <span>Bank Indonesia Admin Panel</span>
+        </div>
+
+        <nav class="admin-nav">
+          <button class="admin-menu" onclick="AdminApp.showDashboard()">🏠 Dashboard</button>
+          <button class="admin-menu">📚 Materi</button>
+          <button class="admin-menu" onclick="AdminApp.showQuestions()">❓ Soal</button>
+          <button class="admin-menu">👨‍🎓 User</button>
+          <button class="admin-menu">🏆 Leaderboard</button>
+          <button class="admin-menu">📊 Statistik</button>
+          <button class="admin-menu">⚙️ Pengaturan</button>
+        </nav>
+      </aside>
+
+      <main class="admin-main">
+        <div id="admin-content">
+          <!-- Dashboard Awal -->
+          ... ...
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const sidebar = document.querySelector(".admin-sidebar");
+      const overlay = document.querySelector(".sidebar-overlay");
+      // menuToggle.addEventListener("click", () => {
+      //   sidebar.classList.toggle("show");
+      // });
+
+      // menuToggle.addEventListener("click", () => {
+      //   sidebar.classList.toggle("show");
+      //   overlay.classList.toggle("show");
+      // });
+
+      menuToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("show");
+        overlay.classList.toggle("show");
+      });
+
+      
+
+      overlay.addEventListener("click", () => {
+        sidebar.classList.remove("show");
+        overlay.classList.remove("show");
+      });
+    </script>
+
+    <script src="./admin.js"></script>
+  </body>
+</html>

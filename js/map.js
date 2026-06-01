@@ -107,7 +107,7 @@ function renderMap() {
     const mx = (from.x + to.x) / 2 + (i % 2 === 0 ? 30 : -30);
     const my = (from.y + to.y) / 2;
     pathsSVG += `<path d="M${from.x},${from.y} Q${mx},${my} ${to.x},${to.y}"
-      fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="5"
+      fill="none" stroke="#fff" stroke-width="5"
       stroke-linecap="round" class="map-path"
       stroke-dasharray="12 8"/>`;
     // Dots along path (decorative)
@@ -173,57 +173,51 @@ function renderMap() {
   }).join("");
 
   sc.innerHTML = `
-  <div style="min-height:100vh;padding-bottom:80px;position:relative;overflow:hidden">
+  <div class="map-container">
 
-    <!-- Full sky background -->
-    <div class="sky-bg" style="position:fixed;inset:0;z-index:0">
-      <!-- Clouds -->
-      <div class="cloud cloud-1" style="left:-100px;top:8%"></div>
-      <div class="cloud cloud-3" style="left:55%;top:5%"></div>
-      <div class="cloud cloud-2" style="left:20%;top:18%"></div>
-      <!-- Stars (night top) -->
-      ${Array.from({ length: 20 }, (_, i) => `<div class="star-dot" style="left:${Math.random() * 100}%;top:${Math.random() * 25}%;--d:${2 + Math.random() * 2}s;animation-delay:${Math.random() * 3}s"></div>`).join("")}
+    <!-- Background -->
+    <div class="map-bg"></div>
+
+    <!-- CONTENT -->
+    <div class="map-content">
+
+      <!-- Header -->
+      <div class="map-header">
+        <button class="btn btn-outline back-btn" onclick="App.showDashboard()">←</button>
+
+          <h2 class="map-title">Peta Petualangan</h2>
+
+          <div class="map-logo">
+        <img src="assets/images/bi-logo.png" alt="Bank Indonesia" />
+      </div>
     </div>
 
-    <!-- Header -->
-    <div style="position:relative;z-index:10;padding:16px 20px 8px;display:flex;align-items:center;gap:12px">
-      <button class="btn btn-outline" onclick="App.showDashboard()"
-        style="width:40px;height:40px;border-radius:50%;padding:0;background:rgba(255,255,255,0.9);border-color:transparent;font-size:18px">
-        ←
-      </button>
-      <h2 style="color:#fff;font-size:22px;text-shadow:0 2px 8px rgba(0,0,0,0.2)">Peta Petualangan</h2>
-      <div style="
-          margin-left:auto;
-          background:rgba(255,255,255,0.95);
-          padding:10px 14px;
-          border-radius:14px;
-          box-shadow:0 4px 12px rgba(0,0,0,.1);">
-          <img src="assets/images/bi-logo.png" alt="Bank Indonesia" style="height:45px; width:auto; display:block;"/>
-        </div>
-    </div>
-
-    <!-- Map canvas -->
-    <div style="position:relative;z-index:5;width:100%;max-width:375px;margin:0 auto;height:640px">
-
-      <!-- SVG paths -->
-      <svg width="100%" height="100%" viewBox="0 0 ${W} ${H}" style="position:absolute;inset:0;pointer-events:none">
-        <!-- Ground/terrain blobs -->
-        <ellipse cx="188" cy="570" rx="160" ry="40" fill="rgba(255,255,255,0.06)"/>
-        <ellipse cx="80"  cy="420" rx="80"  ry="30" fill="rgba(255,255,255,0.04)"/>
-        <ellipse cx="260" cy="280" rx="90"  ry="28" fill="rgba(255,255,255,0.04)"/>
-        <ellipse cx="150" cy="130" rx="100" ry="32" fill="rgba(255,255,255,0.05)"/>
-        ${pathsSVG}
+    <!-- Map Canvas -->
+    <div class="map-canvas">
+      <svg viewBox="0 0 400 800" class="map-road">
+        <path d="
+          M200 780
+          Q120 680 220 580
+          Q320 480 200 400
+          Q80 300 220 220
+          Q300 150 180 80" class="road-path"/>
       </svg>
 
-      <!-- Island nodes -->
+      <!-- Nodes -->
       ${nodesHTML}
     </div>
 
     <!-- Tip -->
-    <div style="position:relative;z-index:10;text-align:center;padding:0 20px 16px">
-      <p style="color:rgba(255,255,255,0.7);font-size:12px;font-weight:700">
-        👆 Ketuk pulau untuk mulai kuis!
-      </p>
+    <div class="map-tip">
+      👆 Ketuk pulau untuk mulai kuis!
     </div>
-  </div>`;
+
+  </div>
+
+  <!-- Footer -->
+  <div class="map-footer">
+    <img src="assets/images/footer-bi.png" alt="Footer BI" />
+  </div>
+
+</div>`;
 }
