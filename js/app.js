@@ -1,4 +1,17 @@
 const App = {
+  showRegister() {
+    document.getElementById("screen-register").style.display = "block";
+    document.getElementById("screen-dashboard").style.display = "none";
+    document.getElementById("screen-map").style.display = "none";
+    document.getElementById("screen-quiz").style.display = "none";
+
+    renderRegister();
+
+    setTimeout(() => {
+      document.querySelector(".avatar-btn")?.classList.add("active");
+    }, 0);
+  },
+
   showDashboard() {
     document.getElementById("screen-dashboard").style.display = "block";
     document.getElementById("screen-map").style.display = "none";
@@ -29,5 +42,9 @@ const App = {
 };
 
 window.onload = () => {
-  App.showDashboard();
+  if (!S.userName) {
+    App.showRegister();
+  } else {
+    App.showDashboard();
+  }
 };

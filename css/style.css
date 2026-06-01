@@ -486,20 +486,44 @@ h3 {
 }
 
 /* dashborad  */
-.dashboard-header {
-  min-height: 180px;
-  border-radius: 0 0 30px 30px;
+.dashboard-header-bi {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  padding: 28px 20px 70px;
+
   overflow: hidden;
-  position: relative;
+
+  background: linear-gradient(180deg, #041c4a 0%, #0a4fa8 100%);
+
+  border-radius: 0 0 32px 32px;
 }
 
-.dashboard-wave {
+/* Motif batik */
+.dashboard-header-bi::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-image: url("../assets/bg/bg-batik.png");
+
+  background-size: cover;
+  background-position: center;
+
+  opacity: 0.15;
+
+  pointer-events: none;
+}
+
+/* .dashboard-wave {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 90px;
-}
+} */
 
 /* ── Nav ── */
 .bottom-nav {
@@ -789,3 +813,212 @@ h3 {
     padding: 12px 14px;
   }
 }
+
+.site-footer {
+  margin-top: 20px;
+  line-height: 0;
+}
+
+.site-footer img {
+  width: 100%;
+  display: block;
+  margin-top: -50px; /* sesuaikan */
+}
+
+.rupiah-banner {
+  background: white;
+  border-radius: 20px;
+  padding: 14px;
+  margin: -15px 0 20px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(10, 79, 168, 0.12);
+}
+
+.rupiah-banner img {
+  width: 180px;
+  height: auto;
+}
+
+.rupiah-banner p {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--blue-main);
+}
+
+/* Register */
+/* header BI */
+.bi-header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 16px;
+
+  background: rgba(255, 255, 255, 0.98);
+
+  padding: 16px 20px;
+
+  border-radius: 0 0 24px 24px;
+
+  box-shadow: 0 6px 24px rgba(10, 79, 168, 0.12);
+
+  margin-bottom: 40px;
+}
+
+.bi-header img {
+  width: 140px;
+  height: auto;
+}
+.bi-header span {
+  color: var(--blue-deep);
+
+  font-weight: 900;
+
+  font-size: 22px;
+
+  letter-spacing: 0.8px;
+}
+
+.register-screen {
+  min-height: 100vh;
+
+  background: linear-gradient(180deg, #041c4a 0%, #0a4fa8 45%, #f4f9ff 100%);
+
+  padding: 40px 20px 0;
+
+  text-align: center;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.register-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("../assets/bg/bg-batik.png");
+
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+
+  opacity: 0.15;
+
+  pointer-events: none;
+}
+
+.register-logo {
+  width: 260px;
+
+  margin: 0 auto 10px;
+
+  display: block;
+}
+
+.register-title {
+  color: white;
+  font-size: 36px;
+}
+
+.register-subtitle {
+  color: rgba(255, 255, 255, 0.85);
+
+  font-size: 15px;
+
+  margin-bottom: 30px;
+}
+
+.register-form {
+  max-width: 420px;
+
+  margin: 0 auto;
+}
+
+.avatar-title {
+  color: white;
+
+  margin: 24px 0 12px;
+}
+
+.avatar-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 12px;
+
+  margin-bottom: 20px;
+}
+
+.avatar-btn {
+  border: none;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(8px);
+
+  font-size: 34px;
+
+  border-radius: 18px;
+
+  padding: 12px;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.avatar-btn:hover {
+  transform: scale(1.1);
+}
+
+.avatar-btn.active {
+  background: white;
+
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.6);
+}
+
+#avatar-preview {
+  width: 120px;
+  height: 120px;
+
+  margin: 24px auto;
+
+  border-radius: 50%;
+
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 64px;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.register-btn {
+  width: 100%;
+
+  font-size: 20px;
+
+  padding: 18px;
+
+  margin-top: 10px;
+
+  animation: bounce 2s infinite;
+}
+.register-footer {
+  width: 100%;
+
+  margin-top: 50px;
+
+  display: block;
+}
+
+/* END Register */

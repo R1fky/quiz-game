@@ -65,10 +65,10 @@ function renderDashboard() {
   }).join("");
 
   sc.innerHTML = `
-  <div style="min-height:100vh;padding-bottom:90px;background:linear-gradient(180deg,#e8f3ff 0%,var(--off-white) 100%)">
+  <div style="padding-bottom:20px;background:linear-gradient(180deg,#e8f3ff 0%,var(--off-white) 100%)">
 
     <!-- Header wave -->
-    <div class="sky-bg dashboard-header"
+    <div class="dashboard-header-bi"
       style="
       padding:28px 20px 60px;
       position:sticky;
@@ -81,17 +81,19 @@ function renderDashboard() {
 
       <div style="display:flex;align-items:center;gap:14px;position:relative;z-index:2">
         <div style="width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,0.2);border:3px solid rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;font-size:28px;animation:float 3s ease-in-out infinite">
-          🧑‍🚀
+          ${S.avatar || "🧑‍🚀"}
         </div>
         <div>
           <p style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700">Selamat datang,</p>
           <h2 style="color:#fff;font-size:22px;margin:0">${S.userName || "Penjelajah"}</h2>
         </div>
-        <div style="margin-left:auto;display:flex;gap:8px">
-          <div style="background:rgba(255,255,255,0.2);border-radius:50px;padding:6px 14px;display:flex;align-items:center;gap:5px;border:1.5px solid rgba(255,255,255,0.3)">
-            <span style="animation:wiggle 1s ease-in-out infinite;display:inline-block">🔥</span>
-            <span style="color:#fff;font-family:'Fredoka One',cursive;font-size:15px">${S.streak}</span>
-          </div>
+        <div style="
+          margin-left:auto;
+          background:rgba(255,255,255,0.95);
+          padding:10px 14px;
+          border-radius:14px;
+          box-shadow:0 4px 12px rgba(0,0,0,.1);">
+          <img src="assets/images/bi-logo.png" alt="Bank Indonesia" style="height:45px; width:auto; display:block;"/>
         </div>
       </div>
 
@@ -101,7 +103,12 @@ function renderDashboard() {
       </svg>
     </div>
 
-    <div style="padding:0 16px;margin-top:-10px">
+   <div style="padding:0 16px;margin-top:30px">
+
+    <div class="rupiah-banner" style="margin-top:30px;">
+      <img src="assets/images/logo-bg.png" alt="Rupiah" />
+      <p>Media Edukasi Keuangan Bank Indonesia</p>
+    </div>
 
       <!-- Stats row -->
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">
@@ -165,10 +172,15 @@ function renderDashboard() {
         style="width:100%;font-size:18px;padding:16px;border-radius:18px;justify-content:center;gap:8px;margin-bottom:8px;animation:bounce 2s ease-in-out infinite">
         🗺️ Mulai Petualangan!
       </button>
+
       <p style="text-align:center;font-size:12px;color:var(--blue-light);font-weight:700;padding-bottom:8px">
         3 pulau edukasi Bank Indonesia menunggumu!
       </p>
 
+
+      <div class="site-footer">
+        <img src="assets/images/footer-bi.png" alt="Footer BI">
+      </div>
     </div>
   </div>`;
 }

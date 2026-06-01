@@ -6,6 +6,7 @@
 // ── Default state ──
 const DEFAULT_STATE = {
   userName: "",
+  avatar: "🧑‍🚀",
   xp: 0,
   streak: 0,
   weeklyXp: [0, 0, 0, 0, 0, 0, 0], // Mon–Sun

@@ -5,7 +5,7 @@
 
 const ISLANDS = [
   {
-    name: "Cinta Bangga Paham Rupiah",
+    name: "Cinta",
     emoji: "💵",
     description: "Mengenal fungsi, ciri keaslian, dan pentingnya Rupiah sebagai simbol kedaulatan Indonesia.",
 
@@ -26,7 +26,7 @@ const ISLANDS = [
   },
 
   {
-    name: "Sistem Pembayaran Indonesia",
+    name: "Bangga",
     emoji: "💳",
     description: "Belajar tentang QRIS, BI-FAST, uang elektronik, dan berbagai sistem pembayaran modern.",
 
@@ -41,7 +41,7 @@ const ISLANDS = [
   },
 
   {
-    name: "Kebijakan Moneter",
+    name: "Paham",
     emoji: "📈",
     description: "Memahami peran Bank Indonesia dalam menjaga stabilitas harga dan mengendalikan inflasi.",
 
@@ -89,3 +89,5 @@ const ACHIEVEMENTS = [
     check: (state) => state.islandScores[0] > 0 && state.islandScores[1] > 0 && state.islandScores[2] > 0,
   },
 ];
+
+const AVATARS = ["🧑‍🚀", "👨‍🎓", "👩‍🎓", "👨‍💻", "👩‍💻", "👩‍🔬", "👨‍🔬", "🧕"];

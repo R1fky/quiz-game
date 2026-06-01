@@ -192,7 +192,14 @@ function renderMap() {
         ←
       </button>
       <h2 style="color:#fff;font-size:22px;text-shadow:0 2px 8px rgba(0,0,0,0.2)">Peta Petualangan</h2>
-      <div style="margin-left:auto" class="xp-badge">⚡ ${S.xp}</div>
+      <div style="
+          margin-left:auto;
+          background:rgba(255,255,255,0.95);
+          padding:10px 14px;
+          border-radius:14px;
+          box-shadow:0 4px 12px rgba(0,0,0,.1);">
+          <img src="assets/images/bi-logo.png" alt="Bank Indonesia" style="height:45px; width:auto; display:block;"/>
+        </div>
     </div>
 
     <!-- Map canvas -->

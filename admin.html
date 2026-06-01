@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizQuest Admin Panel</title>
+    <link rel="stylesheet" href="./css/admin-style.css" />
+  </head>
+  <body>
+    <div class="admin-layout">
+      <div class="mobile-header">
+        <button id="menuToggle">☰</button>
+        <div class="mobile-brand">
+          <img src="assets/images/bi-logo.png" alt="" />
+          <span>QuizQuest Admin</span>
+        </div>
+      </div>
+
+      <div class="sidebar-overlay"></div>
+
+      <aside class="admin-sidebar">
+        <div class="admin-brand">
+          <img src="assets/images/bi-logo.png" alt="BI Logo" />
+
+          <h3>QuizQuest</h3>
+
+          <span>Bank Indonesia Admin Panel</span>
+        </div>
+
+        <nav class="admin-nav">
+          <button class="admin-menu active">🏠 Dashboard</button>
+          <button class="admin-menu">📚 Materi</button>
+          <button class="admin-menu">❓ Soal</button>
+          <button class="admin-menu">👨‍🎓 User</button>
+          <button class="admin-menu">🏆 Leaderboard</button>
+          <button class="admin-menu">📊 Statistik</button>
+          <button class="admin-menu">⚙️ Pengaturan</button>
+        </nav>
+      </aside>
+
+      <main class="admin-main">
+        <div class="admin-header">
+          <div>
+            <h1>Dashboard Admin</h1>
+            <p>Kelola QuizQuest Literasi Keuangan</p>
+          </div>
+          <div class="admin-profile">👨‍💼 Admin Master</div>
+        </div>
+
+        <div class="admin-stats">
+          <div class="stat-card user">
+            <div class="stat-icon">👨‍🎓</div>
+            <div class="stat-info">
+              <h2>1.250</h2>
+              <p>Total User</p>
+            </div>
+          </div>
+
+          <div class="stat-card soal">
+            <div class="stat-icon">❓</div>
+            <div class="stat-info">
+              <h2>120</h2>
+              <p>Total Soal</p>
+            </div>
+          </div>
+
+          <div class="stat-card xp">
+            <div class="stat-icon">🏆</div>
+            <div class="stat-info">
+              <h2>52.000</h2>
+              <p>Total XP</p>
+            </div>
+          </div>
+
+          <div class="stat-card pulau">
+            <div class="stat-icon">🏝️</div>
+            <div class="stat-info">
+              <h2>4</h2>
+              <p>Pulau Aktif</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-content">
+          <div class="admin-card">
+            <h3>📈 Aktivitas Mingguan</h3>
+            <div class="chart-placeholder">
+              <span>📊</span>
+              <span>Siap dihubungkan ke Chart.js</span>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <h3>✨ User Terbaru</h3>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nama Player</th>
+                    <th style="text-align: right">Skor XP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Rifky</td>
+                    <td><span class="badge-xp">2.500 XP</span></td>
+                  </tr>
+                  <tr>
+                    <td>Budi</td>
+                    <td><span class="badge-xp">1.900 XP</span></td>
+                  </tr>
+                  <tr>
+                    <td>Siti</td>
+                    <td><span class="badge-xp">1.700 XP</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const sidebar = document.querySelector(".admin-sidebar");
+      const overlay = document.querySelector(".sidebar-overlay");
+      menuToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("show");
+      });
+
+      menuToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("show");
+        overlay.classList.toggle("show");
+      });
+
+      overlay.addEventListener("click", () => {
+        sidebar.classList.remove("show");
+        overlay.classList.remove("show");
+      });
+    </script>
+  </body>
+</html>
