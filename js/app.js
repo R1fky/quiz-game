@@ -1,6 +1,9 @@
 const App = {
   showRoleSelection() {
-    document.getElementById("screen-role").style.display = "block";
+    const role = document.getElementById("screen-role");
+    if (!role) return; // 🔥 biar ga error kalau null
+
+    role.style.display = "block";
     document.getElementById("screen-register").style.display = "none";
     document.getElementById("screen-dashboard").style.display = "none";
     document.getElementById("screen-map").style.display = "none";
@@ -8,7 +11,6 @@ const App = {
 
     renderRoleSelection();
   },
-
   showRegister() {
     document.getElementById("screen-role").style.display = "none"; //
 
@@ -35,7 +37,7 @@ const App = {
 
   showMap() {
     document.getElementById("screen-role").style.display = "none"; // ✅
-    
+
     document.getElementById("screen-dashboard").style.display = "none";
     document.getElementById("screen-map").style.display = "block";
     document.getElementById("screen-quiz").style.display = "none";
