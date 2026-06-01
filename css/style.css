@@ -1175,3 +1175,63 @@ h3 {
   opacity: 0.2;
 }
 /* END MAP  */
+
+/* ROLE SELECT  */
+/* ROLE SELECT */
+.role-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #041c4a 0%, #0a4fa8 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: white;
+  text-align: center;
+}
+
+.role-title {
+  font-size: 42px;
+  font-weight: 900;
+}
+
+.role-subtitle {
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.role-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.role-card {
+  width: 220px;
+  background: white;
+  color: #041c4a;
+  padding: 25px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.role-card:hover {
+  transform: translateY(-8px);
+}
+
+.role-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.role-card.player {
+  border-top: 5px solid #16c784;
+}
+
+.role-card.admin {
+  border-top: 5px solid #f6c90e;
+}
+/* END ROLE SELECT  */
