@@ -241,11 +241,20 @@ const AdminApp = {
   },
 
   showQuestions() {
-    setActiveMenu(2);
+    setActiveMenu(1);
     renderQuestionPage();
     document.getElementById("btn-back").addEventListener("click", () => {
       AdminApp.showDashboard();
     });
+  },
+  showUsers() {
+    setActiveMenu(2);
+    renderUserPage();
+  },
+
+  showStats() {
+    setActiveMenu(3);
+    renderStatsPage();
   },
 };
 

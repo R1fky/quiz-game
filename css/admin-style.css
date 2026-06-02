@@ -771,3 +771,14 @@ tr:hover td {
     flex-direction: column;
   }
 }
+
+/* USER and STATISTIK */
+.table-container table td {
+  font-weight: 600;
+  color: var(--blue-deep);
+}
+
+.admin-card h3 {
+  margin-bottom: 12px;
+}
+/* END USER and STATISTIK */

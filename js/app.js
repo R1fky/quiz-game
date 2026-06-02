@@ -94,6 +94,7 @@ function renderRoleSelection() {
 }
 
 function goToAdmin() {
+  // window.location.href = "../prototype-game-web/admin/admin.html";
   window.location.href = "../admin/admin.html";
 }
 

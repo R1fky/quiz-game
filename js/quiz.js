@@ -58,7 +58,8 @@ function renderQuizQuestion() {
         <button onclick="exitQuiz()" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center">
           ←
         </button>
-        <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px;flex:1">
+        <span style="font-size:22px">${S.avatar}</span>
           <p style="color:rgba(255,255,255,0.7);font-size:11px;font-weight:700">${isl.name} ${isl.emoji}</p>
           <p style="color:#fff;font-family:'Fredoka One',cursive;font-size:16px">Soal ${Q.qIdx + 1} dari ${isl.questions.length}</p>
         </div>
@@ -113,8 +114,15 @@ function renderQuizQuestion() {
           .join("")}
       </div>
 
-      <!-- Feedback (hidden initially) -->
+      <!-- Feedback -->
       <div id="feedbackBox" style="display:none"></div>
+
+      <!-- Avatar Player -->
+      <div class="quiz-avatar">
+        <div class="avatar-bubble">
+          ${S.avatar}
+        </div>
+      </div>
     </div>
   </div>`;
 
@@ -153,73 +161,76 @@ function checkAnswer(chosen) {
   Q.answered = true;
   clearInterval(Q.timerInterval);
 
-  const qData = ISLANDS[Q.islandIdx].questions[Q.qIdx];
-  const isCorrect = chosen === qData.ans;
   const xpThisQ = 10 + Q.qIdx * 2;
 
-  // Disable all buttons
+  // Disable tombol
   document.querySelectorAll(".answer-btn").forEach((b) => b.classList.add("disabled"));
-  document.getElementById(`opt-${chosen}`).classList.add(isCorrect ? "correct" : "wrong");
-  if (!isCorrect) document.getElementById(`opt-${qData.ans}`).classList.add("correct");
+
+  const selectedBtn = document.getElementById(`opt-${chosen}`);
+
+  // Animasi klik (netral)
+  // Reset semua dulu (biar bersih)
+  document.querySelectorAll(".answer-btn").forEach((btn) => {
+    btn.classList.remove("selected-final");
+  });
+
+  // Kasih efek ke yang dipilih
+  selectedBtn.classList.add("answered");
+  selectedBtn.classList.add("pulse-soft");
+
+  // Tambah efek setelah animasi selesai
+  setTimeout(() => {
+    selectedBtn.classList.add("selected-final");
+  }, 200);
+
+  // ❗ LOGIC tetap jalan di belakang layar (untuk XP & statistik)
+  const qData = ISLANDS[Q.islandIdx].questions[Q.qIdx];
+  const isCorrect = chosen === qData.ans;
 
   if (isCorrect) {
     Q.score++;
     Q.earnedXP += xpThisQ;
-    spawnConfetti(null, null, 18);
   } else {
     Q.wrong++;
   }
 
-  // Show feedback
+  // ❌ TANPA kasih tahu benar/salah
   const fb = document.getElementById("feedbackBox");
   fb.style.display = "block";
   fb.innerHTML = `
-    <div class="feedback-box ${isCorrect ? "feedback-correct" : "feedback-wrong"}">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-        <span style="font-size:28px;animation:pop 0.4s ease">${isCorrect ? "🎉" : "💡"}</span>
-        <div>
-          <p style="font-weight:900;font-size:15px;color:${isCorrect ? "var(--green)" : "var(--red)"}">
-            ${isCorrect ? `Benar! +${xpThisQ} XP 🌟` : "Kurang tepat!"}
-          </p>
-          ${
-            !isCorrect
-              ? `<p style="font-size:12px;color:var(--blue-deep);font-weight:700;margin-top:2px">
-            Jawaban: <b>${qData.opts[qData.ans]}</b></p>`
-              : ""
-          }
-        </div>
+    <div class="feedback-box">
+      <div style="text-align:center;margin-bottom:10px">
+        <span style="font-size:26px">✨</span>
+        <p style="font-weight:800;font-size:14px;color:var(--blue-deep)">
+          Jawaban tersimpan!
+        </p>
       </div>
       <button class="btn btn-blue" onclick="nextQuestion()"
-        style="width:100%;font-size:15px;padding:12px;border-radius:12px;justify-content:center;gap:6px">
-        ${Q.qIdx + 1 >= ISLANDS[Q.islandIdx].questions.length ? "🏁 Lihat Hasil" : "Lanjut →"}
+        style="width:100%;padding:12px;border-radius:12px">
+        ${Q.qIdx + 1 >= ISLANDS[Q.islandIdx].questions.length ? "🏁 Selesai" : "Lanjut →"}
       </button>
     </div>`;
 }
 
-// ── Time out ──
 function timeOut() {
   Q.answered = true;
   Q.wrong++;
-  const qData = ISLANDS[Q.islandIdx].questions[Q.qIdx];
+
   document.querySelectorAll(".answer-btn").forEach((b) => b.classList.add("disabled"));
-  document.getElementById(`opt-${qData.ans}`).classList.add("correct");
 
   const fb = document.getElementById("feedbackBox");
   fb.style.display = "block";
   fb.innerHTML = `
-    <div class="feedback-box feedback-wrong">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-        <span style="font-size:28px">⏰</span>
-        <div>
-          <p style="font-weight:900;font-size:15px;color:var(--red)">Waktu Habis!</p>
-          <p style="font-size:12px;color:var(--blue-deep);font-weight:700;margin-top:2px">
-            Jawaban: <b>${qData.opts[qData.ans]}</b>
-          </p>
-        </div>
+    <div class="feedback-box">
+      <div style="text-align:center;margin-bottom:10px">
+        <span style="font-size:26px">⏰</span>
+        <p style="font-weight:800;font-size:14px;color:var(--blue-deep)">
+          Waktu habis, lanjut ya!
+        </p>
       </div>
       <button class="btn btn-blue" onclick="nextQuestion()"
-        style="width:100%;font-size:15px;padding:12px;border-radius:12px;justify-content:center">
-        ${Q.qIdx + 1 >= ISLANDS[Q.islandIdx].questions.length ? "🏁 Lihat Hasil" : "Lanjut →"}
+        style="width:100%;padding:12px;border-radius:12px">
+        ${Q.qIdx + 1 >= ISLANDS[Q.islandIdx].questions.length ? "🏁 Selesai" : "Lanjut →"}
       </button>
     </div>`;
 }
@@ -259,16 +270,24 @@ function exitQuiz() {
   document.body.appendChild(backdrop);
 }
 
-// ── Finish quiz ──
 function finishQuiz() {
   clearInterval(Q.timerInterval);
 
   const isl = ISLANDS[Q.islandIdx];
-  const stars = starsFromScore(Q.score);
+  const stars = starsFromScore(Q.score, isl.questions.length); // sekalian fix bug
+
+  // 🔥 TAMBAHKAN INI
+  S.playedIslands[Q.islandIdx] = true;
 
   // Save to state
-  if (Q.score > S.islandScores[Q.islandIdx]) S.islandScores[Q.islandIdx] = Q.score;
-  if (stars > S.islandStars[Q.islandIdx]) S.islandStars[Q.islandIdx] = stars;
+  if (Q.score > S.islandScores[Q.islandIdx]) {
+    S.islandScores[Q.islandIdx] = Q.score;
+  }
+
+  if (stars > S.islandStars[Q.islandIdx]) {
+    S.islandStars[Q.islandIdx] = stars;
+  }
+
   addXP(Q.earnedXP);
   checkStreak();
   saveState(S);
@@ -276,8 +295,59 @@ function finishQuiz() {
   const newAchs = checkAchievements();
   showResultScreen(newAchs);
 }
-
 // ── Result screen ──
+// function showResultScreen(newAchs) {
+//   const isl = ISLANDS[Q.islandIdx];
+//   const stars = S.islandStars[Q.islandIdx];
+
+//   const sc = document.getElementById("screen-quiz");
+//   sc.innerHTML = `
+//   <div style="min-height:100vh;background:linear-gradient(180deg,#ddeeff 0%,var(--off-white) 100%);padding:24px 16px 40px">
+
+//     <div style="text-align:center;margin-bottom:10px">
+//       <span style="font-size:72px">${isl.emoji}</span>
+//       <h2 style="font-family:'Fredoka One';font-size:26px;color:var(--blue-deep)">
+//         Petualangan Selesai! 🎉
+//       </h2>
+//       <p style="font-size:14px;color:#666">
+//         Kamu telah menyelesaikan semua soal di ${isl.name}
+//       </p>
+//     </div>
+
+//     <!-- Stars -->
+//     <div style="display:flex;justify-content:center;gap:10px;margin:20px 0">
+//       ${[0, 1, 2]
+//         .map(
+//           (i) => `
+//         <span style="font-size:40px;${i < stars ? "" : "opacity:0.3"}">⭐</span>
+//       `,
+//         )
+//         .join("")}
+//     </div>
+
+//     <!-- XP only -->
+//     <div class="card" style="padding:18px;margin-bottom:14px;text-align:center">
+//       <p style="font-size:14px;color:#888;font-weight:700">XP Didapat</p>
+//       <p style="font-size:30px;font-family:'Fredoka One';color:var(--yellow-dark)">
+//         +${Q.earnedXP}
+//       </p>
+//     </div>
+
+//     ${
+//       newAchs.length > 0
+//         ? `<div class="card" style="padding:14px;margin-bottom:14px">
+//             <p style="font-weight:900">🏅 Achievement!</p>
+//             ${newAchs.map((a) => `<p>${a.emoji} ${a.name}</p>`).join("")}
+//           </div>`
+//         : ""
+//     }
+
+//     <button class="btn btn-blue" onclick="App.showMap()"
+//       style="width:100%;padding:14px;border-radius:14px">
+//       🗺️ Kembali ke Peta
+//     </button>
+//   </div>`;
+// }
 function showResultScreen(newAchs) {
   const isl = ISLANDS[Q.islandIdx];
   const acc = Math.round((Q.score / isl.questions.length) * 100);
@@ -306,18 +376,19 @@ function showResultScreen(newAchs) {
     <div class="card" style="padding:18px;margin-bottom:14px">
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
         <div style="text-align:center">
-          <p style="font-size:26px;font-family:'Fredoka One',cursive;color:var(--green)">${Q.score}</p>
-          <p style="font-size:11px;font-weight:800;color:#aaa">Benar ✅</p>
-        </div>
-        <div style="text-align:center">
-          <p style="font-size:26px;font-family:'Fredoka One',cursive;color:var(--red)">${Q.wrong}</p>
-          <p style="font-size:11px;font-weight:800;color:#aaa">Salah ❌</p>
-        </div>
-        <div style="text-align:center">
-          <p style="font-size:26px;font-family:'Fredoka One',cursive;color:var(--yellow-dark)">+${Q.earnedXP}</p>
-          <p style="font-size:11px;font-weight:800;color:#aaa">XP ⚡</p>
-        </div>
+          <p style="font-size:26px;font-family:'Fredoka One',cursive;color:var(--blue-main)">
+            ${Q.score + Q.wrong}
+          </p>
+          <p style="font-size:11px;font-weight:800;color:#aaa">Total Soal</p>
       </div>
+
+      <div style="text-align:center">
+        <p style="font-size:26px;font-family:'Fredoka One',cursive;color:var(--blue-main)">
+          ${Q.earnedXP}
+        </p>
+        <p style="font-size:11px;font-weight:800;color:#aaa">XP Didapat</p>
+      </div>
+    </div>
       <!-- Accuracy -->
       <div>
         <div style="display:flex;justify-content:space-between;margin-bottom:6px">

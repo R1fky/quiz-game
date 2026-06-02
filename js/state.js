@@ -12,6 +12,7 @@ const DEFAULT_STATE = {
   weeklyXp: [0, 0, 0, 0, 0, 0, 0], // Mon–Sun
   islandScores: [0, 0, 0, 0], // best score per island
   islandStars: [0, 0, 0, 0], // 0-3 stars
+  playedIslands: [false, false, false, false],
   earnedAchs: [], // achievement ids earned
   lastPlayDate: "",
 };
@@ -82,7 +83,8 @@ function isIslandUnlocked(idx) {
 
 function isIslandUnlockedCorrect(idx) {
   if (idx === 0) return true;
-  return S.islandScores[idx - 1] >= 6;
+
+  return S.playedIslands[idx - 1];
 }
 
 // ── Stars from score ──

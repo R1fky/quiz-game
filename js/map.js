@@ -93,6 +93,19 @@ function renderMap() {
     { x: 65, y: 25, pathTo: 1 },
   ];
 
+  // Cari posisi avatar (berdasarkan pulau terakhir yang dikerjakan)
+  function getAvatarPosition() {
+    for (let i = 0; i < S.playedIslands.length; i++) {
+      if (!S.playedIslands[i]) {
+        return layout[i]; // posisi island berikutnya
+      }
+    }
+
+    return layout[S.playedIslands.length - 1];
+  }
+
+  const avatarPos = getAvatarPosition();
+
   // Build SVG paths between nodes
   // We need actual pixel values; use fixed canvas 375×640
   const W = 375,
@@ -144,9 +157,9 @@ function renderMap() {
 
       <!-- Bubble -->
       <div class="node-bubble ${statusClass}"
-        style="width:72px;height:72px;background:${isl.colorBg};
+        style="width:100px;height:100px;background:${isl.colorBg};
           box-shadow:0 6px 24px ${isl.colorShadow}${!unlocked ? ",0 0 0 0 transparent" : ""}">
-        <span style="font-size:36px;line-height:1">${isl.emoji}</span>
+        <span style="font-size:48px;line-height:1">${isl.emoji}</span>
       </div>
 
       <!-- Lock overlay -->
@@ -160,17 +173,33 @@ function renderMap() {
 
       <!-- Stars below node -->
       <div style="display:flex;gap:2px;justify-content:center;margin-top:4px">
-        ${[0, 1, 2].map((j) => `<span style="font-size:11px;${j < stars ? "" : "filter:grayscale(1) opacity(0.3)"}">⭐</span>`).join("")}
+        ${[0, 1, 2].map((j) => `<span style="font-size:18px;${j < stars ? "" : "filter:grayscale(1) opacity(0.3)"}">⭐</span>`).join("")}
       </div>
 
       <!-- Name label -->
       <div style="background:${unlocked ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.5)"};
         border-radius:50px;padding:3px 10px;margin-top:4px;white-space:nowrap;
         box-shadow:0 2px 8px rgba(0,0,0,0.1)">
-        <span style="font-family:'Fredoka One',cursive;font-size:12px;color:var(--blue-deep)">${isl.name}</span>
+        <span style="font-family:'Fredoka One',cursive;font-size:17px;color:var(--blue-deep)">${isl.name}</span>
       </div>
     </div>`;
   }).join("");
+
+  const avatarHTML = `
+  <div class="map-avatar"
+    style="
+      position:absolute;
+      left:${avatarPos.x}%;
+      top:${avatarPos.y}%;
+      transform:translate(-50%,-140%);
+      z-index:20;
+      animation:float 2s ease-in-out infinite;
+    ">
+    <div class="avatar-bubble">
+      ${S.avatar}
+    </div>
+  </div>
+`;
 
   sc.innerHTML = `
   <div class="map-container">
@@ -194,7 +223,7 @@ function renderMap() {
 
     <!-- Map Canvas -->
     <div class="map-canvas">
-      <svg viewBox="0 0 400 800" class="map-road">
+      <svg viewBox="0 0 400 1000" class="map-road">
         <path d="
           M200 780
           Q120 680 220 580
@@ -203,8 +232,11 @@ function renderMap() {
           Q300 150 180 80" class="road-path"/>
       </svg>
 
-      <!-- Nodes -->
-      ${nodesHTML}
+    <!-- Nodes -->
+    ${nodesHTML}
+
+    <!-- Avatar -->
+    ${avatarHTML}
     </div>
 
     <!-- Tip -->

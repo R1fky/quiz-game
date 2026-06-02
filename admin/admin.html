@@ -29,11 +29,9 @@
 
         <nav class="admin-nav">
           <button class="admin-menu" onclick="AdminApp.showDashboard()">🏠 Dashboard</button>
-          <button class="admin-menu">📚 Materi</button>
           <button class="admin-menu" onclick="AdminApp.showQuestions()">❓ Soal</button>
-          <button class="admin-menu">👨‍🎓 User</button>
-          <button class="admin-menu">🏆 Leaderboard</button>
-          <button class="admin-menu">📊 Statistik</button>
+          <button class="admin-menu" onclick="AdminApp.showUsers()">👨‍🎓 User</button>
+          <button class="admin-menu" onclick="AdminApp.showStats()">📊 Statistik</button>
           <button class="admin-menu">⚙️ Pengaturan</button>
         </nav>
       </aside>
@@ -63,8 +61,6 @@
         overlay.classList.toggle("show");
       });
 
-      
-
       overlay.addEventListener("click", () => {
         sidebar.classList.remove("show");
         overlay.classList.remove("show");
@@ -72,5 +68,7 @@
     </script>
 
     <script src="./admin.js"></script>
+    <script src="./stats.js"></script>
+    <script src="./users.js"></script>
   </body>
 </html>
