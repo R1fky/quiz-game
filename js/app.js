@@ -27,12 +27,14 @@ const App = {
   },
 
   showDashboard() {
+    hideAllScreens(); 
     document.getElementById("screen-role").style.display = "none"; //
     document.getElementById("screen-dashboard").style.display = "block";
     document.getElementById("screen-map").style.display = "none";
     document.getElementById("screen-quiz").style.display = "none";
 
     renderDashboard();
+    window.scrollTo(0, 0);
   },
 
   showMap() {
@@ -91,6 +93,12 @@ function renderRoleSelection() {
 
     </div>
   `;
+}
+
+function hideAllScreens() {
+  document.querySelectorAll("[id^='screen-']").forEach((el) => {
+    el.style.display = "none";
+  });
 }
 
 function goToAdmin() {
