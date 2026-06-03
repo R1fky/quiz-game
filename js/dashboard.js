@@ -65,8 +65,7 @@ function renderDashboard() {
   }).join("");
 
   sc.innerHTML = `
-  <div style="padding-bottom:20px;background:linear-gradient(180deg,#e8f3ff 0%,var(--off-white) 100%)">
-
+  <div class="dashboard-screen">
     <!-- Header wave -->
     <div class="dashboard-header-bi"
       style="
@@ -96,11 +95,6 @@ function renderDashboard() {
           <img src="assets/images/bi-logo.png" alt="Bank Indonesia" style="height:45px; width:auto; display:block;"/>
         </div>
       </div>
-
-      <!-- wave bottom -->
-      <svg viewBox="0 0 375 40" style="position:absolute;bottom:-1px;left:0;width:100%" preserveAspectRatio="none">
-        <path d="M0,20 C80,40 160,0 240,20 S320,40 375,20 L375,40 L0,40Z" fill="#e8f3ff"/>
-      </svg>
     </div>
 
    <div style="padding:0 16px;margin-top:30px">

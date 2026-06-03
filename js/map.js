@@ -200,12 +200,42 @@ function renderMap() {
     </div>
   </div>
 `;
+  //  hujan avatar
+  const avatarRain = Array.from({ length: 5 })
+    .map(() => {
+      const left = Math.random() * 100;
+
+      const delay = Math.random() * 12;
+
+      const dur = 18 + Math.random() * 8;
+
+      return `
+      <div
+        class="avatar-rain"
+        style="
+          left:${left}%;
+          animation-delay:${delay}s;
+          animation-duration:${dur}s;
+        "
+      >
+        ${S.avatar}
+      </div>
+    `;
+    })
+    .join("");
 
   sc.innerHTML = `
   <div class="map-container">
 
     <!-- Background -->
-    <div class="map-bg"></div>
+    <div class="map-bg">
+      ${avatarRain}
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="red-circle red-1"></div>
+      <div class="red-circle red-2"></div>
+      <div class="red-circle red-3"></div>
+    </div>
 
     <!-- CONTENT -->
     <div class="map-content">

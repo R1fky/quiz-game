@@ -38,15 +38,21 @@ function renderRegister() {
   sc.innerHTML = `
   <div class="register-screen">
 
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+
+    <div class="red-circle red-1"></div>
+    <div class="red-circle red-2"></div>
+    <div class="red-circle red-3"></div>
+    <div class="red-circle red-4"></div>
+
     <div class="bi-header">
       <img src="assets/images/bi-logo.png" alt="Bank Indonesia"/>
 
       <span> Bank Indonesia</span>
       <p>Edukasi Literasi Keuangan</p>
     </div>
-
-    <div class="cloud cloud-1"></div>
-    <div class="cloud cloud-2"></div>
 
     <img
       src="assets/images/logo-bg.png"
@@ -59,8 +65,8 @@ function renderRegister() {
     </h1>
 
     <p class="register-subtitle">
-      Jelajahi Pulau Literasi Keuangan
-      bersama Bank Indonesia
+      Belajar Literasi Keuangan melalui petualangan,
+      tantangan, dan misi seru bersama Bank Indonesia.
     </p>
 
     <div class="register-form">
@@ -94,21 +100,15 @@ function renderRegister() {
         🧑‍🚀
       </div>
 
-      <button
-        class="btn btn-primary register-btn"
-        onclick="startAdventure()"
-      >
-        🗺️ Mulai Petualangan
+      <button class="rw-btn" onclick="startAdventure()" id="reg-btn" onclick="handleRegister()">
+        <div class="rw-btn-inner">
+          Daftar Sekarang
+          <div class="rw-btn-arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div>
+        </div>
       </button>
 
     </div>
 
-    <img
-      src="assets/images/footer-bi.png"
-      class="register-footer"
-      alt="Bank Indonesia"
-    >
-
-  </div>
+      
   `;
 }
