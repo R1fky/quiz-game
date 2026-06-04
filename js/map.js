@@ -95,16 +95,22 @@ function renderMap() {
 
   // Cari posisi avatar (berdasarkan pulau terakhir yang dikerjakan)
   function getAvatarPosition() {
-    for (let i = 0; i < S.playedIslands.length; i++) {
+    for (let i = 0; i < layout.length; i++) {
       if (!S.playedIslands[i]) {
-        return layout[i]; // posisi island berikutnya
+        return layout[i];
       }
     }
 
-    return layout[S.playedIslands.length - 1];
+    // jika semua pulau selesai
+    return layout[layout.length - 1];
   }
 
   const avatarPos = getAvatarPosition();
+
+  if (!avatarPos) {
+    console.error("avatarPos undefined");
+    return;
+  }
 
   // Build SVG paths between nodes
   // We need actual pixel values; use fixed canvas 375×640
@@ -195,7 +201,7 @@ function renderMap() {
       z-index:20;
       animation:float 2s ease-in-out infinite;
     ">
-    <div class="avatar-bubble">
+    <div class="map-avatar-bubble">
       ${S.avatar}
     </div>
   </div>
@@ -203,26 +209,53 @@ function renderMap() {
   //  hujan avatar
   const avatarRain = Array.from({ length: 5 })
     .map(() => {
-      const left = Math.random() * 100;
+      const left = 5 + Math.random() * 90;
 
-      const delay = Math.random() * 12;
+      const size = [40, 55, 70][Math.floor(Math.random() * 3)];
 
-      const dur = 18 + Math.random() * 8;
+      const delay = Math.random() * 10;
+
+      const duration = 18 + Math.random() * 8;
+
+      const opacity = 0.08 + Math.random() * 0.08;
 
       return `
       <div
         class="avatar-rain"
         style="
           left:${left}%;
+          font-size:${size}px;
+          opacity:${opacity};
           animation-delay:${delay}s;
-          animation-duration:${dur}s;
-        "
-      >
+          animation-duration:${duration}s;
+        ">
         ${S.avatar}
       </div>
     `;
     })
     .join("");
+  // const avatarRain = Array.from({ length: 5 })
+  //   .map(() => {
+  //     const left = Math.random() * 100;
+
+  //     const delay = Math.random() * 12;
+
+  //     const dur = 18 + Math.random() * 8;
+
+  //     return `
+  //     <div
+  //       class="avatar-rain"
+  //       style="
+  //         left:${left}%;
+  //         animation-delay:${delay}s;
+  //         animation-duration:${dur}s;
+  //       "
+  //     >
+  //       ${S.avatar}
+  //     </div>
+  //   `;
+  //   })
+  //   .join("");
 
   sc.innerHTML = `
   <div class="map-container">

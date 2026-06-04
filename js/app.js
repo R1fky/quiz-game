@@ -1,7 +1,7 @@
 const App = {
   showRoleSelection() {
     const role = document.getElementById("screen-role");
-    if (!role) return; // 🔥 biar ga error kalau null
+    if (!role) return; // 
 
     role.style.display = "block";
     document.getElementById("screen-register").style.display = "none";
@@ -11,6 +11,7 @@ const App = {
 
     renderRoleSelection();
   },
+  
   showRegister() {
     document.getElementById("screen-role").style.display = "none"; //
 
@@ -102,8 +103,8 @@ function hideAllScreens() {
 }
 
 function goToAdmin() {
-  // window.location.href = "../prototype-game-web/admin/admin.html";
-  window.location.href = "../admin/admin.html";
+  window.location.href = "../prototype-game-web/admin/admin.html";
+  // window.location.href = "../admin/admin.html";
 }
 
 window.onload = () => {

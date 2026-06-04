@@ -67,24 +67,40 @@ function renderDashboard() {
   sc.innerHTML = `
   <div class="dashboard-screen">
     <!-- Header wave -->
-    <div class="dashboard-header-bi"
-      style="
-      padding:28px 20px 60px;
-      position:sticky;
-      top:0;
-      z-index:100;
-      overflow:hidden;">
-      <!-- clouds -->
-      <div class="cloud cloud-1" style="left:-100px;opacity:0.7"></div>
-      <div class="cloud cloud-2" style="left:60%;opacity:0.6"></div>
-
+    <div class="dashboard-header-bi">
       <div style="display:flex;align-items:center;gap:14px;position:relative;z-index:2">
-        <div style="width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,0.2);border:3px solid rgba(255,255,255,0.5);display:flex;align-items:center;justify-content:center;font-size:28px;animation:float 3s ease-in-out infinite">
+        <div style="width:58px;height:58px;
+        border-radius:50%;
+        background:white;
+        border:3px solid rgba(255,255,255,.4);
+        box-shadow:0 8px 18px rgba(0,0,0,.2);
+        display:flex;align-items:center;justify-content:center;font-size:28px;animation:float 3s ease-in-out infinite">
           ${S.avatar || "🧑‍🚀"}
         </div>
         <div>
-          <p style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700">Selamat datang,</p>
-          <h2 style="color:#fff;font-size:22px;margin:0">${S.userName || "Penjelajah"}</h2>
+          <p style="
+            color:rgba(255,255,255,.75);
+            font-size:12px;
+            font-weight:600;
+            letter-spacing:.5px;
+            text-transform:uppercase;">
+            CBP Rupiah
+          </p>
+
+          <h2 style="
+            color:white;
+            font-size:24px;
+            margin:0;
+            font-weight:800;">
+            Halo, ${S.userName || "Peserta"}
+          </h2>
+
+          <p style="
+            color:rgba(255,255,255,.8);
+            font-size:13px;
+            margin-top:4px;">
+            Belajar Cinta, Bangga, dan Paham Rupiah
+          </p>
         </div>
         <div style="
           margin-left:auto;
@@ -107,16 +123,16 @@ function renderDashboard() {
       <!-- Stats row -->
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">
         <div class="card" style="padding:14px 10px;text-align:center">
-          <p style="font-size:24px;font-family:'Fredoka One',cursive;color:var(--blue-main)">${S.xp}</p>
-          <p style="font-size:11px;font-weight:800;color:var(--blue-light);margin-top:2px">Total XP</p>
+          <p style="font-size:24px;font-family:'Fredoka One',cursive;color:#0A4FA8">${S.xp}</p>
+          <p style="font-size:11px;font-weight:800;color:#0A4FA8;margin-top:2px">Total XP</p>
         </div>
         <div class="card" style="padding:14px 10px;text-align:center">
-          <p style="font-size:24px;font-family:'Fredoka One',cursive;color:var(--yellow-dark)">${S.islandStars.reduce((a, b) => a + b, 0)}</p>
-          <p style="font-size:11px;font-weight:800;color:var(--blue-light);margin-top:2px">Bintang ⭐</p>
+          <p style="font-size:24px;font-family:'Fredoka One',cursive;color:#F6C90E">${S.islandStars.reduce((a, b) => a + b, 0)}</p>
+          <p style="font-size:11px;font-weight:800;color:#F6C90E";margin-top:2px">Bintang ⭐</p>
         </div>
         <div class="card" style="padding:14px 10px;text-align:center">
-          <p style="font-size:24px;font-family:'Fredoka One',cursive;color:var(--green)">${S.islandScores.filter((v) => v >= 6).length}</p>
-          <p style="font-size:11px;font-weight:800;color:var(--blue-light);margin-top:2px">Pulau Selesai</p>
+          <p style="font-size:24px;font-family:'Fredoka One',cursive;color:#D91F26">${S.islandScores.filter((v) => v >= 6).length}</p>
+          <p style="font-size:11px;font-weight:800;color:#D91F26;margin-top:2px">Pulau Selesai</p>
         </div>
       </div>
 
@@ -162,13 +178,40 @@ function renderDashboard() {
       </div>
 
       <!-- START ADVENTURE BUTTON -->
-      <button class="btn btn-primary" onclick="App.showMap()"
-        style="width:100%;font-size:18px;padding:16px;border-radius:18px;justify-content:center;gap:8px;margin-bottom:8px;animation:bounce 2s ease-in-out infinite">
-        🗺️ Mulai Petualangan!
+      <button
+        onclick="App.showMap()"
+        style="
+          width:100%;
+          padding:18px;
+          border:none;
+          border-radius:20px;
+
+          background:linear-gradient(
+            135deg,
+            #ff4545,
+            #d91f26
+          );
+
+          color:white;
+
+          font-size:18px;
+          font-weight:900;
+
+          box-shadow:
+            0 10px 24px rgba(217,31,38,.35);
+
+          animation:bounce 2s ease-in-out infinite;
+        ">
+        Mulai Petualangan <i class="ti ti-arrow-right" aria-hidden="true"></i>
       </button>
 
-      <p style="text-align:center;font-size:12px;color:var(--blue-light);font-weight:700;padding-bottom:8px">
-        3 pulau edukasi Bank Indonesia menunggumu!
+      <p style="
+        text-align:center;
+        font-size:12px;
+        color:#6b7280;
+        font-weight:700;
+        padding-bottom:8px">
+        Jelajahi seluruh pulau dan raih gelar Sahabat Rupiah 🇮🇩
       </p>
 
 
