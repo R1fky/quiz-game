@@ -207,17 +207,43 @@ function renderMap() {
   </div>
 `;
   //  hujan avatar
-  const avatarRain = Array.from({ length: 5 })
+  // const avatarRain = Array.from({ length: 10 })
+  //   .map(() => {
+  //     const left = 5 + Math.random() * 90;
+
+  //     const size = [40, 55, 70][Math.floor(Math.random() * 3)];
+
+  //     const delay = Math.random() * 10;
+
+  //     const duration = 5 + Math.random() * 3;
+
+  //     const opacity = 0.08 + Math.random() * 0.08;
+
+  //     return `
+  //     <div
+  //       class="avatar-rain"
+  //       style="
+  //         left:${left}%;
+  //         font-size:${size}px;
+  //         opacity:${opacity};
+  //         animation-delay:${delay}s;
+  //         animation-duration:${duration}s;
+  //       ">
+  //       ${S.avatar}
+  //     </div>
+  //   `;
+  //   })
+  //   .join("");
+  const avatarRain = Array.from({ length: 15 })
     .map(() => {
-      const left = 5 + Math.random() * 90;
+      const left = Math.random() * 100;
+      const size = [35, 50, 65][Math.floor(Math.random() * 3)];
 
-      const size = [40, 55, 70][Math.floor(Math.random() * 3)];
+      const delay = Math.random() * 2;
 
-      const delay = Math.random() * 10;
+      const duration = 3 + Math.random() * 2;
 
-      const duration = 18 + Math.random() * 8;
-
-      const opacity = 0.08 + Math.random() * 0.08;
+      const opacity = 0.05 + Math.random() * 0.08;
 
       return `
       <div
@@ -234,28 +260,6 @@ function renderMap() {
     `;
     })
     .join("");
-  // const avatarRain = Array.from({ length: 5 })
-  //   .map(() => {
-  //     const left = Math.random() * 100;
-
-  //     const delay = Math.random() * 12;
-
-  //     const dur = 18 + Math.random() * 8;
-
-  //     return `
-  //     <div
-  //       class="avatar-rain"
-  //       style="
-  //         left:${left}%;
-  //         animation-delay:${delay}s;
-  //         animation-duration:${dur}s;
-  //       "
-  //     >
-  //       ${S.avatar}
-  //     </div>
-  //   `;
-  //   })
-  //   .join("");
 
   sc.innerHTML = `
   <div class="map-container">
