@@ -11,7 +11,7 @@ const App = {
 
     renderRoleSelection();
   },
-  
+
   showRegister() {
     document.getElementById("screen-role").style.display = "none"; //
 
@@ -103,8 +103,8 @@ function hideAllScreens() {
 }
 
 function goToAdmin() {
-  window.location.href = "../prototype-game-web/admin/admin.html";
-  // window.location.href = "../admin/admin.html";
+  // window.location.href = "../prototype-game-web/admin/admin.html";
+  window.location.href = "../admin/admin.html";
 }
 
 window.onload = () => {
